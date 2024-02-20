@@ -21,7 +21,6 @@ const languageFiltersData = [
   {id: 'CSS', language: 'CSS'},
 ]
 
-// Write your code here
 class GithubPopularRepos extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
@@ -38,7 +37,6 @@ class GithubPopularRepos extends Component {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
-
     const apiUrl = `https://apis.ccbp.in/popular-repos?language=${activeLanguageFilterId}`
     const response = await fetch(apiUrl)
     if (response.ok) {
@@ -64,7 +62,7 @@ class GithubPopularRepos extends Component {
 
   renderLoadingView = () => (
     <div data-testid="loader">
-      <Loader color="#0284c7" height={80} width={80} type="ThreeDots" />
+      <Loader color="#0284c7" height={80} type="ThreeDots" width={80} />
     </div>
   )
 
@@ -122,7 +120,7 @@ class GithubPopularRepos extends Component {
           <LanguageFilterItem
             key={eachLanguageFilter.id}
             isActive={eachLanguageFilter.id === activeLanguageFilterId}
-            languageFiltersDetails={eachLanguageFilter}
+            languageFilterDetails={eachLanguageFilter}
             setActiveLanguageFilterId={this.setActiveLanguageFilterId}
           />
         ))}
@@ -135,7 +133,7 @@ class GithubPopularRepos extends Component {
       <div className="app-container">
         <div className="responsive-container">
           <h1 className="heading">Popular</h1>
-          {this.renderRepositoriesListView()}
+          {this.renderLanguageFiltersList()}
           {this.renderRepositories()}
         </div>
       </div>
